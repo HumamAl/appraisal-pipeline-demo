@@ -53,9 +53,9 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Fonts */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fonts — IBM Plex for appraisal pipeline precision tooling */
+  --font-sans: var(--font-ibm-plex-sans, var(--font-geist-sans));
+  --font-mono: var(--font-ibm-plex-mono, var(--font-geist-mono));
 
   /* Radius scale — derived from single --radius token */
   --radius-sm: calc(var(--radius) - 4px);
@@ -89,71 +89,75 @@
    Layout Builder overrides color tokens per domain.
    Aesthetic [data-theme] blocks below override all other tokens.
    ============================================================ */
+
+/* ── AESTHETIC: linear / DOMAIN: appraisal-tech ──────────────
+   Creative rationale: Warm amber-gold on near-white — operational
+   tooling for appraisal analysts. IBM Plex Mono for data labels,
+   sharp radius for precision tooling feel, compact density.
+   Pipeline status colors: running=amber pulse, cached=teal,
+   completed=green, failed=red.                                */
 :root {
   /* ── Border Radius ───────────────────────────────────────────
-     Profiles: sharp = 0.25rem | standard = 0.5rem | rounded = 0.75rem
-     Layout Builder sets to match domain personality.            */
-  --radius: 0.5rem;
+     sharp = 0.25rem — matches precision tooling aesthetic       */
+  --radius: 0.25rem;
 
   /* ── Base Surfaces ───────────────────────────────────────── */
-  --background: oklch(1 0 0);
+  --background: oklch(0.99 0.005 78);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(0.97 0.008 78);
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.97 0.008 78);
   --popover-foreground: oklch(0.145 0 0);
-  --surface-hover: oklch(0.96 0 0);
-  --surface-active: oklch(0.94 0 0);
+  --surface-hover: oklch(0.95 0.01 78);
+  --surface-active: oklch(0.93 0.012 78);
 
-  /* ── Primary Color ───────────────────────────────────────────
-     !! OVERRIDE REQUIRED — Layout Builder must replace --primary and
-        --primary-h with domain-appropriate oklch values.
-        See the Creative Brief's colorDirection for the target color.
-        QA rejects builds where --primary stays oklch(0.205 0 0). !! */
-  --primary: oklch(0.205 0 0);
+  /* ── Primary Color — warm amber-gold ─────────────────────── */
+  --primary: oklch(0.62 0.16 78);
   --primary-foreground: oklch(0.985 0 0);
-  --primary-h: 270; /* Integer hue extracted from --primary */
+  --primary-h: 78;
 
   /* ── Derived Color Tokens ────────────────────────────────── */
   --section-dark: oklch(0.10 0.02 var(--primary-h));
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(0.96 0.01 78);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(0.96 0.008 78);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(0.96 0.05 78);
   --accent-foreground: oklch(0.205 0 0);
 
   /* ── Semantic Colors ─────────────────────────────────────── */
-  --destructive: oklch(0.577 0.245 27.325);
-  --success: oklch(0.627 0.194 149.214);
+  --destructive: oklch(0.58 0.24 27);
+  --success: oklch(0.62 0.19 145);
   --success-foreground: oklch(0.985 0 0);
-  --warning: oklch(0.769 0.188 70.08);
+  --warning: oklch(0.75 0.18 85);
   --warning-foreground: oklch(0.205 0 0);
 
+  /* ── Pipeline-Specific Status Colors ─────────────────────── */
+  --status-running: oklch(0.62 0.16 78);    /* amber pulse — matches primary */
+  --status-cached: oklch(0.68 0.14 200);    /* teal */
+  --status-stale: oklch(0.75 0.12 70);      /* muted amber */
+
   /* ── Borders & Inputs ────────────────────────────────────── */
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.90 0.01 78);
+  --input: oklch(0.90 0.01 78);
+  --ring: oklch(0.62 0.16 78);
 
-  /* ── Chart Colors ────────────────────────────────────────────
-     Layout Builder harmonizes to primary hue. See design-system.md. */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* ── Chart Colors — harmonized to amber hue 78 ───────────── */
+  --chart-1: oklch(0.62 0.16 78);   /* primary amber */
+  --chart-2: oklch(0.60 0.15 108);  /* amber+30 — warm yellow-green */
+  --chart-3: oklch(0.58 0.14 138);  /* amber+60 — olive green */
+  --chart-4: oklch(0.64 0.14 48);   /* amber-30 — orange */
+  --chart-5: oklch(0.68 0.14 200);  /* teal — cached color as 5th slot */
 
-  /* ── Sidebar Colors ──────────────────────────────────────────
-     After color override: --sidebar-primary and --sidebar-ring
-     should match --primary.                                     */
-  --sidebar: oklch(0.985 0 0);
+  /* ── Sidebar Colors ──────────────────────────────────────── */
+  --sidebar: oklch(0.97 0.008 78);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: oklch(0.62 0.16 78);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.96 0.01 78);
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-border: oklch(0.90 0.01 78);
+  --sidebar-ring: oklch(0.62 0.16 78);
 
   /* ── Surface / Card Tokens ───────────────────────────────────
      Driven by [data-theme] aesthetic — not overridden per domain.
@@ -164,61 +168,46 @@
   --card-backdrop: none;
   --card-hover-transform: none;
 
-  /* ── Spacing / Density Tokens ────────────────────────────────
-     Layout Builder overrides for compact / standard / spacious feel.
-
-     Compact:  --nav-item-py: 0.375rem, --content-padding: 1rem,   --card-padding: 1rem
-     Standard: --nav-item-py: 0.5rem,   --content-padding: 1.5rem, --card-padding: 1.5rem
-     Spacious: --nav-item-py: 0.625rem, --content-padding: 2rem,   --card-padding: 1.5rem */
-  --page-padding: 1.5rem;
-  --card-padding: 1.5rem;
-  --card-padding-sm: 1rem;
-  --grid-gap: 1rem;
-  --section-gap: 1.5rem;
+  /* ── Spacing / Density Tokens — COMPACT ─────────────────────
+     admin-console compact density profile                        */
+  --page-padding: 1rem;
+  --card-padding: 1rem;
+  --card-padding-sm: 0.75rem;
+  --grid-gap: 0.75rem;
+  --section-gap: 1rem;
 
   /* ── Layout Tokens ───────────────────────────────────────────
-     Sidebar width presets:
-       Slim:     14rem — compact utility or data-dense apps
-       Standard: 16rem — default
-       Wide:     18rem — complex nav, ERP-style
-
-     Header height presets:
-       Compact:  2.75rem
-       Standard: 3.5rem                                           */
+     admin-console: no sidebar, compact header                    */
   --sidebar-width: 16rem;
   --sidebar-collapsed-width: 4rem;
   --sidebar-width-mobile: 18rem;
-  --header-height: 3.5rem;
-  --tab-bar-height: 49px;    /* 48px + 1px border */
-  --content-padding: 1.5rem;
-  --nav-item-py: 0.5rem;
+  --header-height: 2.75rem;           /* compact */
+  --tab-bar-height: 49px;             /* 48px + 1px border */
+  --content-padding: 1rem;            /* compact */
+  --nav-item-py: 0.375rem;            /* compact */
 
-  /* Sidebar surface — override to tint sidebar by domain:
-     White (default): oklch(1 0 0)
-     Tinted:          oklch(0.985 0.008 var(--primary-h))
-     Subdued:         oklch(0.97 0.005 var(--primary-h))          */
-  --sidebar-bg: oklch(1 0 0);
+  --sidebar-bg: oklch(0.97 0.008 78);
 
   /* Tab bar background — tint to primary hue subtly if desired */
   --tab-bar-bg: var(--background);
 
-  /* ── Typography Tokens ───────────────────────────────────── */
-  --font-display: var(--font-geist-sans);
-  --font-body: var(--font-geist-sans);
-  --heading-weight: 700;
-  --heading-tracking: -0.025em;
+  /* ── Typography Tokens — IBM Plex (pipeline precision tool) ── */
+  --font-display: var(--font-ibm-plex-sans, var(--font-geist-sans));
+  --font-body: var(--font-ibm-plex-sans, var(--font-geist-sans));
+  --font-mono: var(--font-ibm-plex-mono, var(--font-geist-mono));
+  --heading-weight: 600;
+  --heading-tracking: -0.015em;
   --heading-transform: none;
   --body-weight: 400;
   --body-tracking: 0em;
-  --body-leading: 1.625;
+  --body-leading: 1.5;
 
-  /* ── Motion Tokens ───────────────────────────────────────────
-     All transitions in components use these — never hardcode
-     duration-200+ or ease-in values directly.                   */
-  --dur-fast: 100ms;
-  --dur-normal: 150ms;
-  --dur-slow: 250ms;
-  --dur-deliberate: 400ms;
+  /* ── Motion Tokens — snappy 100-150ms ───────────────────────
+     Snappy character: fast, no theatrical delays.               */
+  --dur-fast: 80ms;
+  --dur-normal: 120ms;
+  --dur-slow: 200ms;
+  --dur-deliberate: 300ms;
   --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -318,21 +307,23 @@
 
 /* ── 1. Linear / Minimal ─────────────────────────────────────
    The current default aesthetic. Snappy, precise, border-first.
-   Best for: dev tools, B2B SaaS, AI/ML, internal tooling.       */
+   Best for: dev tools, B2B SaaS, AI/ML, internal tooling.
+   Override: appraisal-pipeline uses sharp/compact variant.      */
 [data-theme="linear"] {
-  --radius: 0.5rem;
+  --radius: 0.25rem;
   --card-border-width: 1px;
   --card-shadow: none;
-  --card-shadow-hover: none;
+  --card-shadow-hover: 0 1px 4px oklch(0.62 0.16 78 / 0.10);
   --card-hover-transform: none;
-  --page-padding: 1.5rem;
-  --content-padding: 1.5rem;
-  --grid-gap: 1rem;
-  --section-gap: 1.5rem;
-  --heading-weight: 700;
-  --heading-tracking: -0.025em;
+  --page-padding: 1rem;
+  --content-padding: 1rem;
+  --grid-gap: 0.75rem;
+  --section-gap: 1rem;
+  --nav-item-py: 0.375rem;
+  --heading-weight: 600;
+  --heading-tracking: -0.015em;
   --dur-fast: 80ms;
-  --dur-normal: 100ms;
+  --dur-normal: 120ms;
   --t-interactive: var(--dur-fast) var(--ease-snappy);
 }
 
@@ -817,8 +808,76 @@
 }
 
 [data-format="admin-console"] {
-  --content-padding: 0.75rem;
+  --content-padding: 1rem;
   --sidebar-width: 3.5rem;
+}
+
+/* ── Staggered card reveal ──────────────────────────────────
+   Used by metric strip items and session rows.                */
+@keyframes fade-up-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up-in {
+  animation-name: fade-up-in;
+  animation-timing-function: ease-out;
+}
+
+/* ── Pipeline status animations ─────────────────────────────
+   Phase status indicators: running=amber breath, failed=red blink */
+@keyframes phase-breath {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+@keyframes phase-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.phase-running {
+  color: var(--status-running, oklch(0.62 0.16 78));
+  animation: phase-breath 2s ease-in-out infinite;
+}
+.phase-failed {
+  color: var(--destructive, oklch(0.58 0.24 27));
+  animation: phase-blink 1s step-end infinite;
+}
+.phase-cached {
+  color: var(--status-cached, oklch(0.68 0.14 200));
+}
+.phase-completed {
+  color: var(--success, oklch(0.62 0.19 145));
+}
+.phase-pending {
+  color: var(--muted-foreground, oklch(0.556 0 0));
+}
+
+/* ── Monospaced numeric values — amber tint ─────────────────
+   Used for session IDs, phase durations, confidence scores.   */
+.mono-value {
+  font-family: var(--font-mono, var(--font-ibm-plex-mono));
+  font-variant-numeric: tabular-nums;
+  color: oklch(0.48 0.12 78);
+  font-size: 0.8125rem;
+}
+
+/* ── Phase rail — 1px vertical connector ────────────────────
+   Left-rail connecting phase nodes in pipeline detail view.   */
+.phase-rail {
+  position: relative;
+}
+.phase-rail::before {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  top: 1.5rem;
+  bottom: -0.25rem;
+  width: 1px;
+  background: var(--primary);
+  opacity: 0.25;
+}
+.phase-rail:last-child::before {
+  display: none;
 }
 
 /* ── Dark theme format adjustments ─────────────────────────── */

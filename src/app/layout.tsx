@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { TabNavigation } from "@/components/layout/tab-navigation";
 import { APP_CONFIG } from "@/lib/config";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "Appraisal Pipeline | Demo by Humam",
+  title: "ValuationOps | Demo by Humam",
   description: "Automated residential appraisal pipeline demo",
 };
 
@@ -25,11 +27,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // data-theme activates the CSS theme system — Layout Builder sets APP_CONFIG.aesthetic
-    // which flows through here to drive all visual treatment via CSS variables.
     <html lang="en" data-theme={APP_CONFIG.aesthetic}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <TabNavigation />
         {children}

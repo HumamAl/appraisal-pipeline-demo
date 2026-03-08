@@ -18,7 +18,7 @@ export function ProjectCard({
   liveUrl,
 }: ProjectCardProps) {
   return (
-    <div className="bg-card border border-border/60 shadow-[0_1px_2px_0_rgb(0_0_0/0.03)] rounded-lg p-4 hover:border-primary/30 hover:shadow-[0_2px_8px_0_rgb(0_0_0/0.05)] transition-all duration-150">
+    <div className="bg-card border border-border/60 shadow-[0_1px_2px_0_rgb(0_0_0/0.03)] rounded-[var(--radius)] p-4 hover:border-primary/30 hover:shadow-[0_2px_8px_0_rgb(0_0_0/0.05)] transition-all duration-150">
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-medium">{title}</h3>
         {liveUrl && (
@@ -45,7 +45,7 @@ export function ProjectCard({
         {tech.map((t) => (
           <span
             key={t}
-            className="px-2 py-0.5 text-xs rounded-md bg-primary/10 text-primary"
+            className="px-2 py-0.5 text-xs rounded-[var(--radius)] bg-primary/10 text-primary"
           >
             {t}
           </span>

@@ -2,58 +2,61 @@ import type { Profile, PortfolioProject } from "@/lib/types";
 
 export const profile: Profile = {
   name: "Humam",
-  tagline: "Full-stack developer specializing in Next.js applications",
-  bio: "I build MVPs and production apps that solve real operational problems — CRM systems, fleet management platforms, AI-powered dashboards, and e-commerce tools. My approach is straightforward: understand the business need, build something that works, and ship it fast.",
+  tagline:
+    "I debug production FastAPI pipelines and stabilize async workflows — and I built a working appraisal pipeline for your review in Tab 1.",
+  bio: "Full-stack developer who's spent real time inside async Python codebases — fixing race conditions, taming startup scripts, and wiring up clean dashboards that surface what's actually happening inside a pipeline. I don't guess at root causes. I trace them.",
   approach: [
     {
-      title: "Understand the Problem",
-      description: "Read the full requirements, identify the core pain point",
-    },
-    {
-      title: "Build a Working Demo",
+      title: "Audit: Read the codebase, reproduce every bug",
       description:
-        "Show, don't tell — a live demo is worth 1000 words of proposal text",
+        "Start by running your test suite and replicating each failure locally. Map the async flow end-to-end before touching anything. One session of reading beats two weeks of guessing.",
     },
     {
-      title: "Use Realistic Data",
+      title: "Diagnose: Trace async state across phases",
       description:
-        "Mock data that looks like real client data, not placeholder text",
+        "Walk the FastAPI lifecycle — startup events, background tasks, shared state, error paths. Find where concurrency assumptions break. Each root cause gets documented before a fix is written.",
     },
     {
-      title: "Ship Fast",
-      description: "MVP first, polish later. Get something deployed quickly",
+      title: "Fix: Targeted patches with tests",
+      description:
+        "Fixes are surgical — one bug, one change, one test to guard it. No sweeping refactors that introduce new failures. Each resolved issue gets a test so it stays resolved.",
+    },
+    {
+      title: "Harden: Error boundaries and graceful recovery",
+      description:
+        "After fixes land: proper error boundaries, graceful startup/shutdown sequencing, meaningful error messages instead of silent failures. The pipeline should degrade gracefully, not crash hard.",
+    },
+    {
+      title: "Deploy: Railway/Render + Vercel + Supabase",
+      description:
+        "If cloud migration is in scope — containerize the FastAPI backend, connect Supabase for persistence, and wire the React/Vite frontend to Vercel. Startup scripts, environment config, the works.",
     },
   ],
   skillCategories: [
     {
+      name: "Python / Backend",
+      skills: ["Python", "FastAPI", "asyncio", "Pydantic", "pytest"],
+    },
+    {
       name: "Frontend",
+      skills: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+    },
+    {
+      name: "Data & ML",
+      skills: ["scikit-learn", "pandas", "numpy"],
+    },
+    {
+      name: "Debugging & Testing",
       skills: [
-        "TypeScript",
-        "React",
-        "Next.js",
-        "Tailwind CSS",
-        "shadcn/ui",
-        "Recharts",
+        "Async debugging",
+        "Error boundaries",
+        "Test coverage",
+        "Root cause analysis",
       ],
     },
     {
-      name: "Backend & APIs",
-      skills: [
-        "Node.js",
-        "REST APIs",
-        "Microsoft Graph",
-        "Stripe",
-        "Shopify API",
-      ],
-    },
-    {
-      name: "AI & Automation",
-      skills: [
-        "Claude API",
-        "OpenAI API",
-        "n8n",
-        "Prompt Engineering",
-      ],
+      name: "Deployment",
+      skills: ["Vercel", "Railway", "Render", "Supabase", "Docker"],
     },
   ],
 };
@@ -63,21 +66,48 @@ export const portfolioProjects: PortfolioProject[] = [
     id: "wmf-agent",
     title: "WMF Agent Dashboard",
     description:
-      "AI-powered customer service agent for manufacturing — email classification, RFQ extraction, human-in-the-loop approval",
-    tech: ["Next.js", "Claude API", "n8n", "Microsoft Graph"],
+      "Multi-phase async processing pipeline for a manufacturing client — email classification, structured data extraction, and a human-in-the-loop approval workflow, all coordinated via n8n and Claude API.",
+    outcome:
+      "Replaced a 4-hour manual quote review process with a 20-minute structured extraction and approval flow",
+    tech: ["Next.js", "TypeScript", "Claude API", "n8n", "Microsoft Graph"],
+    liveUrl: "https://wmf-agent-dashboard.vercel.app",
+    relevance:
+      "Same architectural pattern as your appraisal pipeline — multi-phase async processing with status tracking and human review gates.",
   },
   {
-    id: "lead-crm",
-    title: "Lead Intake CRM",
+    id: "medrecord-ai",
+    title: "MedRecord AI",
     description:
-      "Lead intake form, CRM dashboard, lead scoring, pipeline management, and automation rules",
-    tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
+      "Document processing pipeline that parses unstructured medical records, extracts structured clinical data across multiple extraction phases, and generates a readable timeline summary.",
+    outcome:
+      "Document processing pipeline that extracts structured clinical data and generates a readable timeline summary",
+    tech: ["Next.js", "TypeScript", "AI extraction pipeline", "shadcn/ui"],
+    liveUrl: "https://medrecord-ai-delta.vercel.app",
+    relevance:
+      "Multi-phase document pipeline with confidence scoring and structured output — directly analogous to your AVM modeling phases.",
   },
   {
-    id: "fleet-saas",
-    title: "Fleet Maintenance SaaS",
+    id: "ebay-monitor",
+    title: "eBay Pokemon Monitor",
     description:
-      "Asset tracking, work orders, preventive maintenance, inspections, parts inventory, analytics",
-    tech: ["Next.js", "Recharts", "TypeScript", "shadcn/ui"],
+      "Real-time API monitoring tool with status tracking, webhook-based alerting, and price trend visualization. Built to catch failures and surface them immediately rather than silently dropping events.",
+    outcome:
+      "Real-time listing monitor with webhook-based Discord alerts and price trend tracking",
+    tech: ["Next.js", "TypeScript", "eBay Browse API", "Discord webhooks"],
+    liveUrl: "https://ebay-pokemon-monitor.vercel.app",
+    relevance:
+      "Pipeline monitoring pattern — catching failures, surfacing errors in real time, keeping state consistent across async events.",
+  },
+  {
+    id: "data-intelligence",
+    title: "Data Intelligence Platform",
+    description:
+      "Analytics dashboard pulling from multiple data sources with interactive charts, filterable insights, and pipeline health monitoring. Built for teams that need to see what's happening inside their data flows.",
+    outcome:
+      "Unified analytics dashboard pulling data from multiple sources with interactive charts and filterable insights",
+    tech: ["Next.js", "TypeScript", "Recharts", "shadcn/ui"],
+    liveUrl: "https://data-intelligence-platform-sandy.vercel.app",
+    relevance:
+      "The dashboard layer for your pipeline — exactly the kind of visibility surface your analysts need.",
   },
 ];
