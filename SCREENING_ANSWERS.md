@@ -6,7 +6,7 @@ No explicit screening questions were listed in this job posting. The following a
 
 **FastAPI production experience?**
 
-3+ years with FastAPI in production. Familiar with uvicorn worker lifecycle, startup/shutdown event hooks, and async session state patterns — the exact surface where your blank-session bug lives. Demo: {VERCEL_URL}
+3+ years with FastAPI in production. Familiar with uvicorn worker lifecycle, startup/shutdown event hooks, and async session state patterns — the exact surface where your blank-session bug lives. Demo: https://appraisal-pipeline-demo.vercel.app
 
 ---
 
@@ -18,4 +18,4 @@ Yes. The session persistence issue reads like an async initialization race — t
 
 **React/TypeScript proficiency?**
 
-5+ years with React + TypeScript. The frontend phase caching issue (re-running completed phases) is typically a stale closure or missing dependency in a useEffect. The demo covers how I'd handle the phase state: {VERCEL_URL}
+5+ years with React + TypeScript. The frontend phase caching issue (re-running completed phases) is typically a stale closure or missing dependency in a useEffect. The demo covers how I'd handle the phase state: https://appraisal-pipeline-demo.vercel.app

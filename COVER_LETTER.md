@@ -1,6 +1,6 @@
 Hi,
 
-Blank sessions on restart is almost always a race condition between uvicorn's worker init and your session store load. Built a working demo of the appraisal pipeline: {VERCEL_URL}
+Blank sessions on restart is almost always a race condition between uvicorn's worker init and your session store load. Built a working demo of the appraisal pipeline: https://appraisal-pipeline-demo.vercel.app
 
 The demo covers phase state persistence and the frontend caching bug where completed phases re-trigger. Both are fixable without touching your 692-test baseline.
 
